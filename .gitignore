@@ -47,6 +47,7 @@ Temporary Items
 .apdisk
 *.json
 plugins/PrivatePlugin.js
+plugins/Quoting.js
 temp/BetterDiscord.zip
 temp/BetterDiscordApp-stable/betterdiscord.js
 temp/BetterDiscordApp-stable/lib/BetterDiscord.js
