@@ -2,9 +2,9 @@
 
 All plugins go to ``` %appdata%\BetterDiscord\plugins\ ```
 
-##Special API functions and events provided by BetterDiscord, BetterAPI and webSock
+##API functions provided by BetterDiscord, BetterAPI and webSock
 This should help you if you want to write a plugin yourself :)
-You should also check out the ![testPlugin.js](https://github.com/Bluscream/BetterDiscord/blob/master/plugins/testPlugin.js) above.
+You should also check out the [testPlugin.js](https://github.com/Bluscream/BetterDiscord/blob/master/plugins/testPlugin.js) above.
 
 Currently available BdApi functions:
 ```js
