@@ -16,6 +16,7 @@ BdApi.getIpc();
 BdApi.getCore();
 BdApi.getUserIdByName("name");
 BdApi.getUserNameById("id");
+Core.prototype.alert("title", "text")
 ```
 
 Currently available BetterAPI functions:
