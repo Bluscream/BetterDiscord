@@ -125,6 +125,14 @@ BetterAPI.prototype.injectJS  = function() {
 	$("head").append('<script src="https://cdn.rawgit.com/craigmccoy/jquery-charcount/master/jquery.charcount.min.js"></script>');
 };
 BetterAPI.prototype.loadAPI  = function() {
+	// BetterAPI.getOwnID();
+	BetterAPI.getOwnID = function() {
+		return ''+$('.account').find(".avatar-small").css("background-image").match(/\d+/);
+	}
+	// BetterAPI.getOwnName();
+	BetterAPI.getOwnName = function() {
+		return ''+$('.account').find('.username').text();
+	}
 	// BetterAPI.getUserIdByName("name");
 	BetterAPI.getUserIdByName = function(name) {
 		var nick = "";

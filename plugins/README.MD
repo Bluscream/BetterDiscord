@@ -32,6 +32,8 @@ BetterAPI.getCurrentChannelName();
 BetterAPI.getCurrentChannelID();
 BetterAPI.getCurrentServerName();
 BetterAPI.getCurrentServerID();
+BetterAPI.getOwnID();
+BetterAPI.getOwnName();
 BetterAPI.addUserLabel("divID", "label", "<html>");
 BetterAPI.addUserLink(divID, id1, href1, text1, [id2, href2, text2]);
 BetterAPI.addUserButton("btn", "divID", "text");
