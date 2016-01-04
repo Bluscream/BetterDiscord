@@ -32,6 +32,7 @@ function AutoEmbed() {
 			a[href $='.xvid'],a[href $='.XVID'],\
 			a[href $='.m4v'],a[href $='.M4V'],\
 			a[href $='.mp4'],a[href $='.MP4']\
+			a[href $='.webm'],a[href $='.WEBM']\
 		";
 		//Audio
 		$(".message .markup>a:not(.AutoEmbed_parsed").filter(audio).each(function(i,el){
