@@ -10,9 +10,14 @@ If you want to make plugin coding easier for me please support me [here](https:/
 
 Everything goes to ``` %appdata%\BetterDiscord\ ```
 
-__How to get a better Discord experience__:
+##__How to get a better Discord experience__:
+
 1. If you don't have it, get **Discord** from https://discordapp.com/apps
+
 2. Download **BetterDiscord** for your platform on https://betterdiscord.net/home
+
 3. Get **BetterDiscord+** from https://github.com/Bluscream/BetterDiscord/releases/download/1.3/BetterDiscord.Setup.exe
+
 4. Go to the **BetterDiscord** `settings` -> `plugins` tab and check all plugins. ![](https://cdn.discordapp.com/attachments/131115936005619712/131137567834767360/unknown.png)
+
 5. Profit :D
