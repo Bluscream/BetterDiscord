@@ -4,9 +4,9 @@ All plugins go to ``` %appdata%\BetterDiscord\plugins\ ```
 
 ##API functions provided by BetterDiscord, BetterAPI and webSock
 This should help you if you want to write a plugin yourself :)
-You should also check out the [testPlugin.js](https://github.com/Bluscream/BetterDiscord/blob/master/plugins/testPlugin.js) above.
+You should also check out the [testPlugin.js](https://github.com/Bluscream/BetterDiscord/blob/master/plugins/testPlugin.js).
 
-Currently available BdApi functions:
+Currently available [BdApi](https://github.com/Jiiks/BetterDiscordApp/blob/master/js/bdapi.js) functions:
 ```js
 BdApi.joinServer("code");
 BdApi.injectCSS("id", "css");
@@ -19,7 +19,7 @@ BdApi.getUserNameById("id");
 Core.prototype.alert("title", "text")
 ```
 
-Currently available BetterAPI functions:
+Currently available [BetterAPI](https://github.com/Bluscream/BetterDiscord/blob/master/plugins/0_BetterAPI.js) functions:
 ```js
 BetterAPI.log(dbg, "type", "pluginName", "msg");
 BetterAPI.appendTo("link", "Element");
@@ -38,9 +38,13 @@ BetterAPI.addUserLabel("divID", "label", "<html>");
 BetterAPI.addUserLink(divID, id1, href1, text1, [id2, href2, text2]);
 BetterAPI.addUserButton("btn", "divID", "text");
 BetterAPI.changeUserInfo("email", "password", "nickname", ["avatar" BetterAPI.getUserAvatarID(id)]);
+https://github.com/VersatilityWerks/jAlert#quick-use-requires-jalert-functionsjs
+https://github.com/fabien-d/alertify.js/wiki/How-to-Use#usage
+https://github.com/craigmccoy/jquery-charcount#quick-documentation
+https://github.com/afshinm/Json-to-HTML-Table#how-to-use
 ```
 
-Currently available webSock functions:
+Currently available [webSock](https://github.com/Bluscream/BetterDiscord/blob/master/plugins/0_websock.js) functions:
 ```js
 webSock.sendData(opcode,data);
 webSock.sendMessage(); //useless atm.
