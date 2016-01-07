@@ -26,6 +26,9 @@
     max-width:100%;
     max-height100%;
 }
-li[data-reactid=".0.1.1.0.0.0.1.$=1$133218815222874112"],li[data-reactid=".0.1.1.0.0.0.1.$=1$133220611790077952"] {
+li[data-reactid=".0.1.1.0.0.0.1.$=1$133218815222874112"],div[data-reactid=".0.1.1.0.1.0.0.1:$133220611790077952"],li[data-reactid=".0.1.1.0.0.0.1.$=1$133220611790077952"],div[data-reactid=".0.1.1.0.1.0.0.1:$133218815222874112"] {
 	display:none;
+}
+.channel-textarea-inner textarea{
+   width:calc(100% - 40px);
 }
