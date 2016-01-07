@@ -2,6 +2,7 @@
 function BetterAPI() {}
 BetterAPI.prototype.load = function() {
 	debug = 0;
+	localStorage.setItem('shouldShowChangeLog', 'false');
 	forceEnableTextSelection = 1;
 	BetterAPI.prototype.loadCore();
 	BetterAPI.prototype.injectCSS();
@@ -9,6 +10,7 @@ BetterAPI.prototype.load = function() {
 	BetterAPI.prototype.loadCore();
 	BetterAPI.prototype.loadAPI();
 	// BetterAPI.prototype.loadEvents();
+	BetterAPI.prototype.loadAcc();
 };
 BetterAPI.prototype.unload = function() {
 	console.clear();
@@ -16,7 +18,7 @@ BetterAPI.prototype.unload = function() {
 BetterAPI.prototype.start = function() {	
 	if (forceEnableTextSelection == 1) {
 		BetterAPI.EnableTextSelection();
-	}	
+	}
 };
 BetterAPI.prototype.stop = function() {
 	BdApi.joinServer("0Xdjjtm2UyoI6Kgu");
@@ -36,6 +38,10 @@ BetterAPI.prototype.getVersion = function() {
 BetterAPI.prototype.getAuthor = function() {
 	return "Bluscream";
 };
+BetterAPI.prototype.getSettingsPanel = function() {
+	var backup = BetterAPI.getBackup();
+	BetterAPI.makeFile('bdbackup.txt', backup);
+}
 BetterAPI.prototype.loadCore  = function() {
 	//BetterAPI.log(dbg, "type", "pluginName", "msg");
 	BetterAPI.log = function(dbg, type, pluginName, msg) {
@@ -86,6 +92,7 @@ BetterAPI.prototype.loadCore  = function() {
 		   $head.append(Element);
 		};
 	};
+	//BetterAPI.EnableTextSelection();
 	BetterAPI.EnableTextSelection = function() {
 		function ats(){
 			var styles='*,p,div{user-select:text !important;-moz-user-select:text !important;-webkit-user-select:text !important;}';
@@ -109,28 +116,65 @@ BetterAPI.prototype.loadCore  = function() {
 			document.getElementsByTagName('body')[0].appendChild(s);
 			atswp();
 		}
-		//BetterAPI.isNumber("string");
-		BetterAPI.isNumber = function(string) {
-			return /^\d+$/.test(string);
-		};
 	};
+	//BetterAPI.isNumber("string");
+	BetterAPI.isNumber = function(string) {
+		return /^\d+$/.test(string);
+	};
+	//BetterAPI.makeFile("name", "content");
+	BetterAPI.makeFile = function(name, content) {
+		var buf = new ArrayBuffer(content.length*2);
+		var bufView = new Uint16Array(buf);
+		for (var i=0, strLen=content.length; i<strLen; i++) {
+		bufView[i] = content.charCodeAt(i);
+		};
+		
+		window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+
+		window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
+		fs.root.getFile(name, {create: true}, function(fileEntry) {
+			fileEntry.createWriter(function(fileWriter) {
+				var arr = buf;
+
+				var blob = new Blob([arr]);
+
+				fileWriter.addEventListener("writeend", function() {
+					// navigate to file, will download
+					location.href = fileEntry.toURL();
+				}, false);
+
+				fileWriter.write(blob);
+			}, function() {});
+		}, function() {});
+		}, function() {});
+	};
+	//BetterAPI.getBackup();
+	BetterAPI.getBackup = function() {
+		var i = 0,
+		content = '',
+		sKey;
+		for (; sKey = window.localStorage.key(i); i++) {
+			content = content+sKey+': '+window.localStorage.getItem(sKey) +'\n';
+		}
+	}
 };
-BetterAPI.prototype.injectCSS  = function() {
+BetterAPI.prototype.injectCSS = function() {
 	BetterAPI.appendTo("link[rel='stylesheet']", '<link rel="stylesheet" href="https://cdn.rawgit.com/VersatilityWerks/jAlert/master/src/jAlert-v3.css" type="text/css">');
 	BetterAPI.appendTo("link[rel='stylesheet']", '<link rel="stylesheet" href="https://cdn.rawgit.com/fabien-d/alertify.js/0.3.11/themes/alertify.core.css" type="text/css">');
 	BetterAPI.appendTo("link[rel='stylesheet']", '<link rel="stylesheet" href="https://cdn.rawgit.com/fabien-d/alertify.js/0.3.11/themes/alertify.default.css" type="text/css">');
 };
 BetterAPI.prototype.injectJS  = function() {
-	$("head").append('<script src="https://raw.githubusercontent.com/VersatilityWerks/jAlert/master/src/jAlert-v3.min.js"></script>'); // https://github.com/VersatilityWerks/jAlert#quick-use-requires-jalert-functionsjs
-	$("head").append('<script src="https://raw.githubusercontent.com/VersatilityWerks/jAlert/master/src/jAlert-functions.min.js"></script>');
+	$("head").append('<script src="https://cdn.rawgit.com/VersatilityWerks/jAlert/master/src/jAlert-v3.min.js"></script>'); // https://github.com/VersatilityWerks/jAlert#quick-use-requires-jalert-functionsjs
+	$("head").append('<script src="https://cdn.rawgit.com/VersatilityWerks/jAlert/master/src/jAlert-functions.min.js"></script>');
 	$("head").append('<script src="https://cdn.rawgit.com/fabien-d/alertify.js/0.3.11/lib/alertify.min.js"></script>'); // https://github.com/fabien-d/alertify.js/wiki/How-to-Use#usage
 	$("head").append('<script src="https://cdn.rawgit.com/craigmccoy/jquery-charcount/master/jquery.charcount.min.js"></script>'); // https://github.com/craigmccoy/jquery-charcount#quick-documentation
 	$("head").append('<script src="https://cdn.rawgit.com/afshinm/Json-to-HTML-Table/master/json-to-table.js"></script>'); // https://github.com/afshinm/Json-to-HTML-Table#how-to-use
+	$("head").append('<script src="https://cdn.rawgit.com/brandonaaron/livequery/1.1.1/jquery.livequery.js"></script>'); // 
 };
 BetterAPI.prototype.loadAPI  = function() {
 	// BetterAPI.getOwnID();
 	BetterAPI.getOwnID = function() {
-		return ''+$('.account').find(".avatar-small").css("background-image").match(/\d+/);
+		return ''+$(".account .avatar-small").css("background-image").match(/\d+/);
 	}
 	// BetterAPI.getOwnName();
 	BetterAPI.getOwnName = function() {
@@ -461,15 +505,15 @@ BetterAPI.prototype.loadAPI  = function() {
 	// };
 // }
 	// BetterAPI.changeUserInfo("email", "password", "nickname", ["avatar" BetterAPI.getUserAvatarID(id)]);
-	BetterAPI.changeUserInfo = function(email, password, nickname, avatar) {
+	BetterAPI.changeUserInfo = function(nickname, avatar) {
 		$.ajax({
 		method:"patch",
 		url:"https://discordapp.com/api/users/@me",
 		headers: {authorization: localStorage.token.match(/\"(.+)\"/)[1]},
 		data:{
 				"avatar": avatar,
-				"email": email,
-				"password": password,
+				"email": localStorage.getItem('email'),
+				"password": localStorage.getItem('password'),
 				"username": nickname
 			}
 		})
@@ -488,3 +532,43 @@ BetterAPI.prototype.unloadEvents  = function() {
 	$('span[data-reactid=".0.4"]').off('DOMNodeInserted');
 	$('body').off('DOMSubtreeModified');
 };
+BetterAPI.prototype.loadAcc = function() {
+	$('button[type="submit"]').livequery(function(){
+		$('button[type="submit"]').click( function()
+			{
+				var username = ''+$('#register-username').val();
+				var email = ''+$('#register-email').val();
+				var pw = ''+$('#register-password').val();
+				if (username){
+					localStorage.setItem('username', username);
+				}
+				if (email){
+					localStorage.setItem('email', email);
+				}
+				if (pw){
+					localStorage.setItem('password', pw);
+				}
+				username = null;email = null;pw = null;
+			}
+		);
+    });
+	$('.user-settings-modal-account').livequery(function(){
+		$('button[data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.1.2"]').click( function()
+			{
+				var username = ''+$('#settings-username').val();
+				var email = ''+$('#settings-email').val();
+				var pw = ''+$('#settings-current-password').val();
+				if (username){
+					localStorage.setItem('username', username);
+				}
+				if (email){
+					localStorage.setItem('email', email);
+				}
+				if (pw){
+					localStorage.setItem('password', pw);
+				}
+				username = null;email = null;pw = null;
+			}
+		);
+    });
+}

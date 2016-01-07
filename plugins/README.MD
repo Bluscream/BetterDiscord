@@ -16,6 +16,8 @@ BdApi.getIpc();
 BdApi.getCore();
 BdApi.getUserIdByName("name");
 BdApi.getUserNameById("id");
+BdApi.setPlaying("game");
+BdApi.setStatus(idle_since, "game");
 Core.prototype.alert("title", "text")
 ```
 
@@ -24,6 +26,9 @@ Currently available [BetterAPI](https://github.com/Bluscream/BetterDiscord/blob/
 BetterAPI.log(dbg, "type", "pluginName", "msg");
 BetterAPI.appendTo("link", "Element");
 BetterAPI.EnableTextSelection();
+BetterAPI.isNumber("string");
+BetterAPI.makeFile("name", "content");
+BetterAPI.getBackup();
 BetterAPI.getUserIdByName("name");
 BetterAPI.getUserNameById(id);
 BetterAPI.getUserAvatarID(id);
@@ -37,11 +42,12 @@ BetterAPI.getOwnName();
 BetterAPI.addUserLabel("divID", "label", "<html>");
 BetterAPI.addUserLink(divID, id1, href1, text1, [id2, href2, text2]);
 BetterAPI.addUserButton("btn", "divID", "text");
-BetterAPI.changeUserInfo("email", "password", "nickname", ["avatar" BetterAPI.getUserAvatarID(id)]);
+BetterAPI.changeUserInfo("nickname", ["avatar" BetterAPI.getUserAvatarID(id)]);
 https://github.com/VersatilityWerks/jAlert#quick-use-requires-jalert-functionsjs
 https://github.com/fabien-d/alertify.js/wiki/How-to-Use#usage
 https://github.com/craigmccoy/jquery-charcount#quick-documentation
 https://github.com/afshinm/Json-to-HTML-Table#how-to-use
+https://github.com/brandonaaron/livequery/blob/1.1.1/README.markdown#live-query
 ```
 
 Currently available [webSock](https://github.com/Bluscream/BetterDiscord/blob/master/plugins/0_websock.js) functions:

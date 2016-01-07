@@ -15,7 +15,6 @@ function forceLinkPreview() {
 				$(".message .markup>a:not(.forceLinkPreview_parsed").filter(image).each(function(i,el){
 					var e = $(el)
 					if ($(e.parents(".message")).find('.embed-image')){
-						console.log('already has preview.');
 					} else {
 						var url = e.attr("href").replace(/http:\/\//gi,"https://")
 						var img = $('<div class="embed embed-image">\
@@ -27,7 +26,6 @@ function forceLinkPreview() {
 						e.parents(".message .body").siblings(".accessory").append(img)
 						m.scrollTop+=m.scrollHeight-preH
 						e.addClass("forceLinkPreview_parsed");
-						console.log('Added image preview.');
 					}
 				});
 			}
