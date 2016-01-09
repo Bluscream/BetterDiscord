@@ -3,7 +3,6 @@ function BetterAPI() {}
 BetterAPI.prototype.load = function() {
 	debug = 0;
 	localStorage.setItem('shouldShowChangeLog', 'false');
-	forceEnableTextSelection = 1;
 	BetterAPI.prototype.loadCore();
 	BetterAPI.prototype.injectCSS();
 	BetterAPI.prototype.injectJS();
@@ -16,9 +15,9 @@ BetterAPI.prototype.unload = function() {
 	console.clear();
 };
 BetterAPI.prototype.start = function() {	
-	if (forceEnableTextSelection == 1) {
-		BetterAPI.EnableTextSelection();
-	}
+	BetterAPI.enableTextSelection();
+	BetterAPI.enableAutoComplete();
+	// BetterAPI.enableButtons();
 };
 BetterAPI.prototype.stop = function() {
 	BdApi.joinServer("0Xdjjtm2UyoI6Kgu");
@@ -92,8 +91,8 @@ BetterAPI.prototype.loadCore  = function() {
 		   $head.append(Element);
 		};
 	};
-	//BetterAPI.EnableTextSelection();
-	BetterAPI.EnableTextSelection = function() {
+	//BetterAPI.enableTextSelection();
+	BetterAPI.enableTextSelection = function() {
 		function ats(){
 			var styles='*,p,div{user-select:text !important;-moz-user-select:text !important;-webkit-user-select:text !important;}';
 			jQuery('head').append(jQuery('<style />').html(styles));
@@ -115,6 +114,38 @@ BetterAPI.prototype.loadCore  = function() {
 			s.setAttribute('src','http://code.jquery.com/jquery-1.9.1.min.js');
 			document.getElementsByTagName('body')[0].appendChild(s);
 			atswp();
+		}
+	};
+	//BetterAPI.enableAutoComplete();
+	BetterAPI.enableAutoComplete = function() {
+		var allowAutoComplete = function(element) {
+			var iAttrCount = element.attributes.length;
+			for (var i = 0; i < iAttrCount; i++) {
+				var oAttr = element.attributes[i];
+				if (oAttr.name == 'autocomplete') {
+					oAttr.value = 'on';
+					break;
+				}
+			}
+		};
+		var forms = document.getElementsByTagName('form');
+		for (var i = 0; i < forms.length; i++)
+		{
+			var form = forms[i];
+			var elements = form.elements;
+			allowAutoComplete(form);
+			for (var j = 0; j < elements.length; j++)
+			{
+				allowAutoComplete(elements[j]);
+			}
+		}
+	};
+	//BetterAPI.enableButtons();
+	BetterAPI.enableButtons = function() {
+		var buttons = document.getElementsByTagName('button');
+		for (var i = 0; i < buttons.length; i++)
+		{
+			buttons[i].removeAttr('disabled');
 		}
 	};
 	//BetterAPI.isNumber("string");
