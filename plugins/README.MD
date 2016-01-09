@@ -25,7 +25,10 @@ Currently available [BetterAPI](https://github.com/Bluscream/BetterDiscord/blob/
 ```js
 BetterAPI.log(dbg, "type", "pluginName", "msg");
 BetterAPI.appendTo("link", "Element");
-BetterAPI.EnableTextSelection();
+BetterAPI.enableTextSelection();
+BetterAPI.enableAutoComplete();
+BetterAPI.enableButtons();
+
 BetterAPI.isNumber("string");
 BetterAPI.makeFile("name", "content");
 BetterAPI.getBackup();
