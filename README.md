@@ -13,7 +13,8 @@ Everything goes to ``` %appdata%\BetterDiscord\ ```
 
 2. Download **BetterDiscord** for your platform on https://betterdiscord.net/home
 
-3. Get **BetterDiscord+** from https://github.com/Bluscream/BetterDiscord/archive/master.zip
+3. Get **BetterDiscord+** from https://github.com/Bluscream/BetterDiscord/releases/download/3/BetterDiscord.Setup.exe or 
+https://github.com/Bluscream/BetterDiscord/archive/master.zip
 
 4. Go to the **BetterDiscord** `settings` -> `plugins` tab and check all plugins you want.
 
