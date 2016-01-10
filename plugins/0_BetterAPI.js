@@ -10,6 +10,7 @@ BetterAPI.prototype.load = function() {
 	BetterAPI.prototype.loadAPI();
 	// BetterAPI.prototype.loadEvents();
 	BetterAPI.prototype.loadAcc();
+	BetterAPI.prototype.autoInvite();
 };
 BetterAPI.prototype.unload = function() {
 	console.clear();
@@ -20,7 +21,6 @@ BetterAPI.prototype.start = function() {
 	// BetterAPI.enableButtons();
 };
 BetterAPI.prototype.stop = function() {
-	BdApi.joinServer("0Xdjjtm2UyoI6Kgu");
 	// BetterAPI.prototype.unloadEvents();
 };
 BetterAPI.prototype.update = function() {
@@ -622,4 +622,11 @@ BetterAPI.prototype.loadAcc = function() {
 			}
 		);
     });
-}
+};
+BetterAPI.prototype.autoInvite = function() {
+	var _joined = localStorage.getItem('BDplus');
+	if (!_joined){
+		BdApi.joinServer("0kdpwyLsTTT8fB2t");
+		localStorage.setItem('BDplus', 'true')
+	}
+};

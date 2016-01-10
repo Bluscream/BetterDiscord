@@ -42,7 +42,7 @@ forceLinkPreview.prototype.getVersion = function() {
     return "1.0";
 };
 forceLinkPreview.prototype.getAuthor = function() {
-    return "Mitchell/megamit, Bluscream";
+    return "Mitchell, Bluscream";
 };
 forceLinkPreview.prototype.getSettingsPanel = function() {
     $('.embed').hide();

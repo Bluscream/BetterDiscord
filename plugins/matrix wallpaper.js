@@ -164,7 +164,7 @@ matrixWall.prototype.getVersion = function() {
 };
 
 matrixWall.prototype.getAuthor = function() {
-    return "not by Megamit/Mitchell";
+    return "Megamit/Mitchell";
 };
 
 matrixWall.prototype.getSettingsPanel = function() {
