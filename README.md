@@ -5,9 +5,6 @@ This is a collection of plugins 'n themes. I'll try to keep them as up-to-date a
 
 Please note that not every single plugin/theme is by me. If i took your plugin/theme and you want to be credited somewhere here as author just tell me.
 
-
-If you want to make plugin coding easier for me please support me [here](https://github.com/Jiiks/BetterDiscordApp/issues/88) :)
-
 Everything goes to ``` %appdata%\BetterDiscord\ ```
 
 ##__How to get a better Discord experience__:
@@ -18,6 +15,8 @@ Everything goes to ``` %appdata%\BetterDiscord\ ```
 
 3. Get **BetterDiscord+** from https://github.com/Bluscream/BetterDiscord/archive/master.zip
 
-4. Go to the **BetterDiscord** `settings` -> `plugins` tab and check all plugins. ![](https://cdn.discordapp.com/attachments/131115936005619712/131137567834767360/unknown.png)
+4. Go to the **BetterDiscord** `settings` -> `plugins` tab and check all plugins you want.
+
+![](https://cdn.discordapp.com/attachments/131115936005619712/131137567834767360/unknown.png)
 
 5. Profit :D
