@@ -224,10 +224,11 @@ BetterAPI.prototype.injectJS  = function() {
 BetterAPI.prototype.loadAPI  = function() {
 	// BetterAPI.getOwnID();
 	BetterAPI.getOwnID = function() {
-		var _ownID = $(".account .avatar-small").css("background-image").match(/\d+/);
-		if (BetterAPI.isUID(_ownID)) {
-			return ''+_ownID;
+		var ownID = ''+$(".account .avatar-small").css("background-image").match(/\d+/);
+		if (BetterAPI.isUID(ownID)) {
+			return ownID;
 		} else {
+			BetterAPI.log(1, "error", BetterAPI.prototype.getName(), "Can't get own UID.");
 			return null;
 		}
 	}

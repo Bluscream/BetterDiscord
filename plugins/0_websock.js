@@ -77,7 +77,7 @@ function webSock() {
 			self.log("WebSocket Connection Terminated")
 			self.connected=false;
 		}
-	this.WSmessage=function(evt){
+	this.q=function(evt){
 		var reply = JSON.parse(evt.data);
 		if (reply.seq != null) {
 			this.seq = reply.seq;
@@ -104,8 +104,6 @@ function webSock() {
 				});
 			}else if(reply.t == "MESSAGE_CREATE"){
 				var d = reply.d;
-				
-			
 			}
 		}
 	}
