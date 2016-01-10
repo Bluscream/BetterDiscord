@@ -28,8 +28,8 @@ BetterAPI.appendTo("link", "Element");
 BetterAPI.enableTextSelection();
 BetterAPI.enableAutoComplete();
 BetterAPI.enableButtons();
-
 BetterAPI.isNumber("string");
+BetterAPI.isUID("string");
 BetterAPI.makeFile("name", "content");
 BetterAPI.getBackup();
 BetterAPI.getUserIdByName("name");

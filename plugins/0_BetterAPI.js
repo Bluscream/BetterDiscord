@@ -38,8 +38,7 @@ BetterAPI.prototype.getAuthor = function() {
 	return "Bluscream";
 };
 BetterAPI.prototype.getSettingsPanel = function() {
-	var backup = BetterAPI.getBackup();
-	BetterAPI.makeFile('bdbackup.txt', backup);
+	BetterAPI.makeFile('bdbackup.txt', BetterAPI.getBackup());
 }
 BetterAPI.prototype.loadCore  = function() {
 	//BetterAPI.log(dbg, "type", "pluginName", "msg");
@@ -149,8 +148,27 @@ BetterAPI.prototype.loadCore  = function() {
 		}
 	};
 	//BetterAPI.isNumber("string");
-	BetterAPI.isNumber = function(string) {
-		return /^\d+$/.test(string);
+	BetterAPI.isNumber = function(str) {
+		if(/^\d+$/.test(str)) {
+			return true;
+		} else {
+			BetterAPI.log(1, "error", BetterAPI.prototype.getName(), "\""+str+"\" is not a valid number.");
+			return false;
+		}
+	};
+	//BetterAPI.isUID("string");
+	BetterAPI.isUID = function(str) {
+		if(BetterAPI.isNumber(str)) {
+			uid_length_min = 16;uid_length_max = 19;
+			if( ( str.length > uid_length_min ) && ( str.length < uid_length_max ) ) {
+				return true;
+			} else {
+				BetterAPI.log(1, "error", BetterAPI.prototype.getName(), "\""+str+"\" is not between "+uid_length_min+" and "+uid_length_max+" chars.");
+				return false;
+			}
+		} else {
+			return false;
+		}
 	};
 	//BetterAPI.makeFile("name", "content");
 	BetterAPI.makeFile = function(name, content) {
@@ -187,6 +205,7 @@ BetterAPI.prototype.loadCore  = function() {
 		for (; sKey = window.localStorage.key(i); i++) {
 			content = content+sKey+': '+window.localStorage.getItem(sKey) +'\n';
 		}
+		return content;
 	}
 };
 BetterAPI.prototype.injectCSS = function() {
@@ -205,7 +224,12 @@ BetterAPI.prototype.injectJS  = function() {
 BetterAPI.prototype.loadAPI  = function() {
 	// BetterAPI.getOwnID();
 	BetterAPI.getOwnID = function() {
-		return ''+$(".account .avatar-small").css("background-image").match(/\d+/);
+		var _ownID = $(".account .avatar-small").css("background-image").match(/\d+/);
+		if (BetterAPI.isUID(_ownID)) {
+			return ''+_ownID;
+		} else {
+			return null;
+		}
 	}
 	// BetterAPI.getOwnName();
 	BetterAPI.getOwnName = function() {
@@ -238,14 +262,10 @@ BetterAPI.prototype.loadAPI  = function() {
 				};
 			});
 		};
-		if((match != "") && (/^\d+$/.test(match))) {
-			match = ""+match;
-			if( ( match.length > 16 ) || ( match.length < 18 ) ) {
-				BetterAPI.log(1, "log", BetterAPI.prototype.getName(), "UID of \""+nick+"\" is \""+match+"\" with a length of "+match.length+" chars.");
-				return match;
-			} else {
-				return null;
-			}
+		var match = ""+match;	
+		if(BetterAPI.isUID(match)) {
+			BetterAPI.log(1, "log", BetterAPI.prototype.getName(), "UID of \""+nick+"\" is \""+match+"\" with a length of "+match.length+" chars.");
+			return match;
 		} else {
 			return null;
 		};

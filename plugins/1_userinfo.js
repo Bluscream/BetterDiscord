@@ -12,20 +12,23 @@ userInfo.prototype.start = function() {
 		avatarURL = BetterAPI.getUserAvatarURL(id);
 		nameByID = BdApi.getUserNameById(id);
 		gameByID = BetterAPI.getUserGameByID(id);
-		if (gameByID == null) {	
-			BetterAPI.addUserLabel("UserInfoLabel", "Info", ''+
-			'<img src="'+avatarURL+'" style="max-width:223px;"></img><br>'+
-			'<b>Name: </b>'+name+'<br>'+
-			'<b>UID: </b><span style="color:darkgrey">'+id+'</span><br>'+
-			'<b>AID: </b><span style="font-size:x-small">'+avatarID+'</span>');
-		} else {
-			BetterAPI.addUserLabel("UserInfoLabel", "Info", ''+
-			'<img src="'+avatarURL+'" style="max-width:223px;"></img><br>'+
-			'<b>Name: </b>'+name+'<br>'+
-			'<b>UID: </b><span style="color:darkgrey">'+id+'</span><br>'+
-			'<b>AID: </b><span style="font-size:x-small">'+avatarID+'</span><br>'+
-			'<b>Game: </b><span style="color:blue">'+gameByID+'</span>');
+		var _label = '';
+		if (avatarURL) {
+			var _label = _label + '<img src="'+avatarURL+'" style="max-width:223px;"></img>';
 		}
+		if (name) {
+			var _label = _label + '<br><b>Name: </b>'+name+'';
+		}
+		if (BetterAPI.isUID(id)) {
+			var _label = _label + '<br><b>UID: </b><span style="color:darkgrey">'+id+'</span>';
+		}
+		if (avatarID) {
+			var _label = _label + '<br><b>AID: </b><span style="font-size:x-small">'+avatarID+'</span>';
+		}
+		if (gameByID) {	
+			var _label = _label +'<br><b>Game: </b><span style="color:blue">'+gameByID+'</span>';
+		}
+		BetterAPI.addUserLabel("UserInfoLabel", "Info", _label);
 		// BetterAPI.addUserButton("btn", "#UserInfo", "Info");
 		// $('#UserInfo').on("click", function () {
 			// $.jAlert({
