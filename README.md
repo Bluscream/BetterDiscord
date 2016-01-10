@@ -19,6 +19,6 @@ Everything goes to ``` %appdata%\BetterDiscord\ ```
 
 4.1 Please note that `BetterAPI Plugin` and `BetterDiscordWebsock` are requirements for some plugins so you should have them always enabled.
 
-![BD Plugin Settings](http://i.imgur.com/fpcxkrk.png)
+![BD Plugin Settings](http://i.imgur.com/gRDVIQo.png)
 
 5. Profit :D
