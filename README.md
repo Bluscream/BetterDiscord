@@ -17,6 +17,8 @@ Everything goes to ``` %appdata%\BetterDiscord\ ```
 
 4. Go to the **BetterDiscord** `settings` -> `plugins` tab and check all plugins you want.
 
+4.1 Please note that `BetterAPI Plugin` and `BetterDiscordWebsock` are requirements for some plugins so you should have them always enabled.
+
 ![](https://cdn.discordapp.com/attachments/131115936005619712/131137567834767360/unknown.png)
 
 5. Profit :D
