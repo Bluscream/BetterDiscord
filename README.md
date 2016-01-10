@@ -9,17 +9,24 @@ Everything goes to ``` %appdata%\BetterDiscord\ ```
 
 ##__How to get a better Discord experience__:
 
-1. If you don't have it, get **Discord** from https://discordapp.com/apps
+`1.` If you don't have it, get **Discord** from https://discordapp.com/apps
 
-2. Download **BetterDiscord** for your platform on https://betterdiscord.net/home
+`2.` Download **BetterDiscord** for your platform on https://betterdiscord.net/home
 
-3. Get **BetterDiscord+** from https://github.com/Bluscream/BetterDiscord/releases/download/3/BetterDiscord.Setup.exe or 
-https://github.com/Bluscream/BetterDiscord/archive/master.zip
+`3.` Get **BetterDiscord+** from https://github.com/Bluscream/BetterDiscord/releases/download/3/BetterDiscord.Setup.exe
 
-4. Go to the **BetterDiscord** `settings` -> `plugins` tab and check all plugins you want.
+Or get the plugins you want manually from https://github.com/Bluscream/BetterDiscord/tree/master/plugins or https://github.com/Bluscream/BetterDiscord/archive/master.zip
 
-4.1 Please note that `BetterAPI Plugin` and `BetterDiscordWebsock` are requirements for some plugins so you should have them always enabled.
+`4.` If you used the installer continue with step `5.` Otherwise place the plugins you want in `%appdata%\BetterDiscord\plugins\`.
+
+`5.` Refresh Discord with `[CTRL]` + `[SHIFT]` + `[R]` or just restart Discord completely.
+
+`6.` Go to the **BetterDiscord** `settings` -> `plugins` tab and check all plugins you want.
+
+`6.1` Please note that `BetterAPI Plugin` and `BetterDiscordWebsock` are requirements for some plugins so you should have them always enabled.
 
 ![BD Plugin Settings](http://i.imgur.com/gRDVIQo.png)
 
-5. Profit :D
+`7.` Profit :D
+
+If you experience any issues, have questions or just want to talk visit https://discord.gg/0kdpwyLsTTT8fB2t
