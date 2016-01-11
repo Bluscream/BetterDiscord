@@ -9,15 +9,15 @@ userInfo.prototype.start = function() {
 		var name = $(".user-popout").find(".username").text();
 		id = BetterAPI.getUserIdByName(name);
 		avatarID = BetterAPI.getUserAvatarID(id);
+		avatarURL = BetterAPI.getUserAvatarURL(id);
+		nameByID = BdApi.getUserNameById(id);
+		gameByID = BetterAPI.getUserGameByID(id);
 		if(!avatarID){
 			avatarID = BetterAPI.getUserAvatarIDbyName(name);
 		}
-		avatarURL = BetterAPI.getUserAvatarURL(id);
 		if(!avatarURL){
 			avatarURL = BetterAPI.getUserAvatarURLbyName(name);
 		}
-		nameByID = BdApi.getUserNameById(id);
-		gameByID = BetterAPI.getUserGameByID(id);
 		var _label = '';
 		if (avatarURL) {
 			var _label = _label + '<img src="'+avatarURL+'" style="max-width:223px;"></img>';
@@ -65,9 +65,38 @@ userInfo.prototype.start = function() {
 			// BetterAPI.log(0, "info", userInfo.prototype.getName()+": "+name+'\'s Info', "\n\nName: \""+name+"\"\nUID: \""+id+"\"");
 		// });
 	});
+	$('.user-settings-modal-account').livequery(function(){
+		if ($("#userinfopanel").length <= 0) {
+			id = BetterAPI.getOwnID();
+			avatarID = BetterAPI.getOwnAvatarID();
+			if(!avatarID){
+				avatarID = BetterAPI.getUserAvatarIDbyName(name);
+			}
+			var _label = '';
+			if (BetterAPI.isUID(id)) {
+				// var _label = _label + '<b>Unique ID: </b><span style="color:darkgrey">'+id+'</span>';
+				var _label = _label + '\
+					<label data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.0" for="settings-username">\
+						<span data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.0.0">Unique ID</span>\
+					</label>\
+					<input data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.1" id="settings-username" type="text" value="'+id+'" disabled>'
+			}
+			if (avatarID) {
+				// var _label = _label + '<br><br><b>Avatar ID: </b><span>'+avatarID+'</span>';
+				var _label = _label + '\
+					<label data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.0" for="settings-username">\
+						<span data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.0.0">Avatar ID</span>\
+					</label>\
+					<input data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.1" id="settings-username" type="text" value="'+avatarID+'" disabled>'
+			}
+			$('div[data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0"]').append('\
+			<div class="control-group" id="userinfopanel" data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.1">'+_label);
+		}
+	});
 };
 userInfo.prototype.stop = function() {
 	$('span[data-reactid=".0.4"').off('DOMNodeInserted.userInfo');
+	$('.settings-panel').off('DOMNodeInserted.user-settings-modal-account');
 };
 userInfo.prototype.update = function() {
 };

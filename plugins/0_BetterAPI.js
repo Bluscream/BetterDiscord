@@ -39,8 +39,38 @@ BetterAPI.prototype.getAuthor = function() {
 };
 BetterAPI.prototype.getSettingsPanel = function() {
 	BetterAPI.makeFile('bdbackup.txt', BetterAPI.getBackup());
-}
+};
+BetterAPI.prototype.onSwitch = function() {
+	localStorage.setItem('lastURL', window.location.href);
+};
 BetterAPI.prototype.loadCore  = function() {
+	//BetterAPI.DisableLogging();
+	BetterAPI.DisableLogging = function() {
+		console_log = console.log;
+		console_info = console.info;
+		console_warn = console.warn;
+		console_error = console.error;
+		console_debug = console.log;
+		console_count = console.count;
+		window['console']['log'] = function() {};
+		window['console']['info'] = function() {};
+		window['console']['warn'] = function() {};
+		window['console']['error'] = function() {};
+		window['console']['debug'] = function() {};
+		window['console']['count'] = function() {};
+	};
+	//BetterAPI.EnableLogging();
+	BetterAPI.EnableLogging = function() {
+		if(!console_log){
+			return;
+		}
+		window['console']['log'] = console_log;
+		window['console']['info'] = console_info;
+		window['console']['warn'] = console_warn;
+		window['console']['error'] = console_error;
+		window['console']['debug'] = console_debug;
+		window['console']['count'] = console_count;
+	};
 	//BetterAPI.log(dbg, "type", "pluginName", "msg");
 	BetterAPI.log = function(dbg, type, pluginName, msg) {
 		if ( (dbg == "debug") || (dbg == "dbg") || (dbg == 1) ) {
@@ -207,6 +237,16 @@ BetterAPI.prototype.loadCore  = function() {
 		}
 		return content;
 	}
+	//BetterAPI.getBackup("object", "variable");
+	// BetterAPI.createFunc = function(object, variable) {
+		// function variable () {}
+		// variable.prototype.myProperty = property_value;
+		// return new variable()
+	// }
+	// BetterAPI.visit("href");
+	BetterAPI.visit = function(href) {
+		window.location.href = href;
+	}
 };
 BetterAPI.prototype.injectCSS = function() {
 	BetterAPI.appendTo("link[rel='stylesheet']", '<link rel="stylesheet" href="https://cdn.rawgit.com/VersatilityWerks/jAlert/master/src/jAlert-v3.css" type="text/css">');
@@ -220,6 +260,7 @@ BetterAPI.prototype.injectJS  = function() {
 	$("head").append('<script src="https://cdn.rawgit.com/craigmccoy/jquery-charcount/master/jquery.charcount.min.js"></script>'); // https://github.com/craigmccoy/jquery-charcount#quick-documentation
 	$("head").append('<script src="https://cdn.rawgit.com/afshinm/Json-to-HTML-Table/master/json-to-table.js"></script>'); // https://github.com/afshinm/Json-to-HTML-Table#how-to-use
 	$("head").append('<script src="https://cdn.rawgit.com/brandonaaron/livequery/1.1.1/jquery.livequery.js"></script>'); // 
+	// $("head").append('<script src="https://cdn.rawgit.com/flesler/jquery.scrollTo/master/jquery.scrollTo.min.js"></script>'); // 
 };
 BetterAPI.prototype.loadAPI  = function() {
 	// BetterAPI.getOwnID();
@@ -235,6 +276,16 @@ BetterAPI.prototype.loadAPI  = function() {
 	// BetterAPI.getOwnName();
 	BetterAPI.getOwnName = function() {
 		return ''+$('.account').find('.username').text();
+	}
+	// BetterAPI.getOwnAvatarID();
+	BetterAPI.getOwnAvatarID = function() {
+		var avatar = ''+$(".account .avatar-small").css("background-image")
+		return avatar.split("/").pop(-1).slice(0, -5);
+	}
+	// BetterAPI.getOwnAvatarURL();
+	BetterAPI.getOwnAvatarURL = function() {
+		var avatar = ''+$(".account .avatar-small").css("background-image");
+		return avatar.substring(4, avatar.length - 1);
 	}
 	// BetterAPI.getUserIdByName("name");
 	BetterAPI.getUserIdByName = function(name) {
@@ -430,6 +481,57 @@ BetterAPI.prototype.loadAPI  = function() {
 	BetterAPI.getCurrentServerID = function() {
 		var _url = window.location.pathname;
 		return _url.match(/\d+/);
+	}
+	// BetterAPI.getClientList();
+	BetterAPI.getClientList = function() {
+		var list = {};
+		var clients = [];
+		var _clients = $(".user-name, .member-username");
+		for(var i = 0 ; i < _clients.length ; i++) {
+			var name = $(_clients[i]).text();
+			var uid = BetterAPI.getUserIdByName(name);
+			var avatarID = BetterAPI.getUserAvatarIDbyName(name);
+			var avatarURL = BetterAPI.getUserAvatarURLbyName(name);
+			var game = BetterAPI.getUserGameByID(uid);
+			list.clients = clients;
+			var clients3 = {
+				"name": name,
+				"uid": uid,
+				"avatarID": avatarID,
+				"avatarURL": avatarURL,
+				"game": game
+			}
+			list.clients.push(clients3);
+		}
+		BetterAPI.log(1, "log", BetterAPI.prototype.getName(), "Got clientlist of #"+BetterAPI.getCurrentChannelName()+" in \""+BetterAPI.getCurrentServerName()+"\" with a total of "+clients.length+" clients");
+		return list.clients;
+	}
+	// BetterAPI.getClientNameList();
+	BetterAPI.getClientNameList = function() {
+		var clients = [];
+		var _clients = $(".user-name, .member-username");
+		for(var i = 0 ; i < _clients.length ; i++) {
+			var text = $(_clients[i]).text();
+			if(clients.indexOf(text) == -1){
+				clients.push(text);
+			}
+		}
+		return clients;
+	}
+	// BetterAPI.getClientUIDList();
+	BetterAPI.getClientUIDList = function() {
+		var clients = [];
+		var _clients = $(".avatar-small, .avatar-large");
+		for(var i = 0 ; i < _clients.length ; i++) {
+			var url = $(_clients[i]).css("background-image");
+			var match = ''+url.match(/\d+/);
+			if(BetterAPI.isUID(match)){
+				if(clients.indexOf(match) == -1){
+					clients.push(match);
+				}
+			}
+		}
+		return clients;
 	}
 	// BetterAPI.addUserLabel("divID", "label", "<html>");
 	BetterAPI.addUserLabel = function(divID, label, html) {
