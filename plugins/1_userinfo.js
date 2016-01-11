@@ -9,7 +9,13 @@ userInfo.prototype.start = function() {
 		var name = $(".user-popout").find(".username").text();
 		id = BetterAPI.getUserIdByName(name);
 		avatarID = BetterAPI.getUserAvatarID(id);
+		if(!avatarID){
+			avatarID = BetterAPI.getUserAvatarIDbyName(name);
+		}
 		avatarURL = BetterAPI.getUserAvatarURL(id);
+		if(!avatarURL){
+			avatarURL = BetterAPI.getUserAvatarURLbyName(name);
+		}
 		nameByID = BdApi.getUserNameById(id);
 		gameByID = BetterAPI.getUserGameByID(id);
 		var _label = '';

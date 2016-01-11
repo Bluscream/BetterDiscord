@@ -346,6 +346,52 @@ BetterAPI.prototype.loadAPI  = function() {
 		}
 		return match;
 	}
+	// BetterAPI.getUserAvatarIDbyName("name");
+	BetterAPI.getUserAvatarIDbyName = function(name) {
+		var match = null;
+		$(".avatar-small").each(function(){ 
+			var _name = $(this).next().children().text();
+			if(name == _name) {
+				var url = $(this).css("background-image");
+				match = url.split("/").pop(-1).slice(0, -5);
+				return false;
+			}        
+		});
+		if(!match) {
+			$(".avatar-large").each(function(){
+				var _name = $(this).next().find('.user-name').text();
+				if(name == _name) {
+					var url = $(this).css("background-image");
+					match = url.split("/").pop(-1).slice(0, -5);
+					return false;
+				}        
+			});
+		}
+		return match;
+	}
+	// BetterAPI.getUserAvatarURLbyName("name");
+	BetterAPI.getUserAvatarURLbyName = function(name) {
+		var match = null;
+		$(".avatar-small").each(function(){ 
+			var _name = $(this).next().children().text();
+			if(name == _name) {
+				var url = $(this).css("background-image");
+				match = url.substring(4, url.length - 1);
+				return false;
+			}        
+		});
+		if(!match) {
+			$(".avatar-large").each(function(){
+				var _name = $(this).next().find('.user-name').text();
+				if(name == _name) {
+					var url = $(this).css("background-image");
+					match = url.substring(4, url.length - 1);
+					return false;
+				}        
+			});
+		}
+		return match;
+	}
 	// BetterAPI.getUserAvatarURL(id);
 	BetterAPI.getUserAvatarURL = function(id) {
 		var match = null;
