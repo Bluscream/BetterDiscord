@@ -267,7 +267,6 @@ emotab.prototype.load = function () {
             }
         }
     })(jQuery);
-    console.log("plugin loaded");
 };
 emotab.prototype.unload = function () {
     //$.tabcomplete = null;
@@ -315,7 +314,6 @@ emotab.prototype.start = function () {
     };
     if (!emotab.on) {
         setTimeout(delaythis, 1000);
-        console.log("plugin started");
     } else {
         delaythis();
     }
