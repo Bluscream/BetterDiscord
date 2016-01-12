@@ -57,6 +57,7 @@ BetterAPI.getClientUIDList();
 BetterAPI.addUserLabel("divID", "label", "<html>");
 BetterAPI.addUserLink(divID, id1, href1, text1, [id2, href2, text2]);
 BetterAPI.addUserButton("btn", "divID", "text");
+BetterAPI.addServerButton("divID", "text", "before/after");
 BetterAPI.changeUserInfo("nickname", ["avatar" BetterAPI.getUserAvatarID(id)]);
 https://github.com/VersatilityWerks/jAlert#quick-use-requires-jalert-functionsjs
 https://github.com/fabien-d/alertify.js/wiki/How-to-Use#usage

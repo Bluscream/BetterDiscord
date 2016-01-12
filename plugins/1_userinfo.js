@@ -65,6 +65,18 @@ userInfo.prototype.start = function() {
 			// BetterAPI.log(0, "info", userInfo.prototype.getName()+": "+name+'\'s Info', "\n\nName: \""+name+"\"\nUID: \""+id+"\"");
 		// });
 	});
+	$('ul[data-reactid=".0.1.1.0.1.0.0.1"]').livequery(function(){
+		BetterAPI.addServerButton("serverinfobutton", "Server Info", "before");
+	});
+	$('#serverinfobutton').click(function(){
+		Core.prototype.alert('Server Information', '\
+		<b>Name: </b>'+BetterAPI.getCurrentServerName()+'<br>\
+		<b>Server ID: </b>'+BetterAPI.getCurrentServerID()+'<br>\
+		<b>Channel: </b>'+BetterAPI.getCurrentChannelName()+'<br>\
+		<b>Channel ID: </b>'+BetterAPI.getCurrentChannelID()+'<br>\
+		<b>Users: </b>Total: '+BetterAPI.userCount()+' Online: '+BetterAPI.onlineUserCount()+' Offline: '+BetterAPI.offlineUserCount()+'\
+		');
+	});
 	$('.user-settings-modal-account').livequery(function(){
 		if ($("#userinfopanel").length <= 0) {
 			id = BetterAPI.getOwnID();
@@ -109,12 +121,13 @@ userInfo.prototype.onSwitch = function() {
 };
 userInfo.prototype.stop = function() {
 	$('span[data-reactid=".0.4"').off('DOMNodeInserted.userInfo');
+	$('#serverinfobutton').off('click');
 	$('.settings-panel').off('DOMNodeInserted.user-settings-modal-account');
 };
 userInfo.prototype.update = function() {
 };
 userInfo.prototype.getName = function() {
-	return "User Info Plugin";
+	return "Extended Info Plugin";
 };
 userInfo.prototype.getDescription = function() {
 	return "Adds functionality to see more information.";
@@ -125,6 +138,3 @@ userInfo.prototype.getVersion = function() {
 userInfo.prototype.getAuthor = function() {
 	return "Bluscream";
 };
-/*
-<div class="avatar-small" style="background-image:url(&quot;https://cdn.discordapp.com/avatars/82988905682440192/abaa0fc14a1a2940c7c1a0d21f0feb0b.jpg&quot;);" data-reactid=".0.1.1.0.2.1.1.0.0.1:$82988905682440192.0"><div class="status online" data-reactid=".0.1.1.0.2.1.1.0.0.1:$82988905682440192.0.0"></div></div>
-*/

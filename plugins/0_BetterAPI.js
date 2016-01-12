@@ -41,7 +41,7 @@ BetterAPI.prototype.getSettingsPanel = function() {
 	BetterAPI.makeFile('bdbackup.txt', BetterAPI.getBackup());
 };
 BetterAPI.prototype.onSwitch = function() {
-	localStorage.setItem('lastURL', window.location.href);
+	localStorage.setItem('URL', window.location.href);
 };
 BetterAPI.prototype.loadCore  = function() {
 	//BetterAPI.DisableLogging();
@@ -245,6 +245,7 @@ BetterAPI.prototype.loadCore  = function() {
 	// }
 	// BetterAPI.visit("href");
 	BetterAPI.visit = function(href) {
+		localStorage.setItem('lastURL', window.location.href);
 		window.location.href = href;
 	}
 };
@@ -583,7 +584,23 @@ BetterAPI.prototype.loadAPI  = function() {
 	// BetterAPI.addUserButton("btn", "divID", "text");
 	BetterAPI.addUserButton = function(type, divID, text) {
         var divID = divID.startsWith("#") ? divID.substring(1) : divID;
-        if ($("#" + divID).length <= 0) {$('.user-popout-options').append('<button class="'+type+'" id="'+divID+'">'+text+'</button>');}
+        if ($("#" + divID).length <= 0) {
+			$('.user-popout-options').append('<button class="'+type+'" id="'+divID+'">'+text+'</button>');
+		}
+	};
+	// BetterAPI.addServerButton("divID", "text", "before/after");
+	BetterAPI.addServerButton = function(divID, text, pos) {
+		if(pos == "before"){
+			var divID = divID.startsWith("#") ? divID.substring(1) : divID;
+			if ($("#" + divID).length <= 0) {
+				$('ul[data-reactid=".0.1.1.0.1.0.0.1"]').prepend('<li id="'+divID+'"><a>'+text+'</a></li>');
+			}
+		} else {
+			var divID = divID.startsWith("#") ? divID.substring(1) : divID;
+			if ($("#" + divID).length <= 0) {
+				$('ul[data-reactid=".0.1.1.0.1.0.0.1"]').append('<li id="'+divID+'"><a>'+text+'</a></li>');
+			}
+		}
 	};
 	// BetterAPI.addSettingsTab("btn", "divID", "text");
 	// BetterAPI.addSettingsTab = function(type, id, title, text) {
