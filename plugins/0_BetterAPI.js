@@ -594,7 +594,9 @@ BetterAPI.prototype.loadAPI  = function() {
 		$('#status').click(function(){
 			  $.jAlert({
 				  'iframe': href,
-				  'size': 'lg'
+				  'size': 'lg',
+				  'closeBtnAlt': true,
+				  'closeOnClick': true
 			 });
 		});
 	};

@@ -128,6 +128,7 @@ userInfo.prototype.onSwitch = function() {
 userInfo.prototype.stop = function() {
 	$('span[data-reactid=".0.4"').off('DOMNodeInserted.userInfo');
 	$('#serverinfobutton').off('click');
+	$('#serverinfobutton').remove();
 	$('.settings-panel').off('DOMNodeInserted.user-settings-modal-account');
 };
 userInfo.prototype.update = function() {
