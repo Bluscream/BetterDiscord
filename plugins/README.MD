@@ -39,6 +39,8 @@ BetterAPI.getOwnAvatarID();
 BetterAPI.getOwnAvatarURL();
 BetterAPI.serverCount();
 BetterAPI.userCount();
+BetterAPI.onlineUserCount();
+BetterAPI.offlineUserCount();
 BetterAPI.getUserIdByName("name");
 BetterAPI.getUserNameById(id);
 BetterAPI.getUserAvatarID(id);
