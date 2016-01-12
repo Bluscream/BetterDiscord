@@ -68,17 +68,20 @@ userInfo.prototype.start = function() {
 	$('ul[data-reactid=".0.1.1.0.1.0.0.1"]').livequery(function(){
 		BetterAPI.addServerButton("serverinfobutton", "Server Info", "before");
 	});
+	$("#serverinfobutton").livequery(function(){
+		$("#serverinfobutton").click(function(){
+			console.warn('clicked');
+			Core.prototype.alert('Server Information', '\
+				<b>Name: </b>'+BetterAPI.getCurrentServerName()+'<br>\
+				<b>Server ID: </b>'+BetterAPI.getCurrentServerID()+'<br><br>\
+				<b>Channel: </b>'+BetterAPI.getCurrentChannelName()+'<br>\
+				<b>Channel ID: </b>'+BetterAPI.getCurrentChannelID()+'<br><br>\
+				<b>Users: </b>Total: <b>'+BetterAPI.userCount()+'</b> Online: <b>'+BetterAPI.onlineUserCount()+'</b> Offline: <b>'+BetterAPI.offlineUserCount()+'</b>\
+			');
+		});
+	});
 	$('ul[data-reactid=".0.1.1.0.1.3"]').livequery(function(){
 		BetterAPI.addLink("status", "Status", "https://status.discordapp.com/");
-	});
-	$('#serverinfobutton').click(function(){
-		Core.prototype.alert('Server Information', '\
-		<b>Name: </b>'+BetterAPI.getCurrentServerName()+'<br>\
-		<b>Server ID: </b>'+BetterAPI.getCurrentServerID()+'<br><br>\
-		<b>Channel: </b>'+BetterAPI.getCurrentChannelName()+'<br>\
-		<b>Channel ID: </b>'+BetterAPI.getCurrentChannelID()+'<br><br>\
-		<b>Users: </b>Total: <b>'+BetterAPI.userCount()+'</b> Online: <b>'+BetterAPI.onlineUserCount()+'</b> Offline: <b>'+BetterAPI.offlineUserCount()+'</b>\
-		');
 	});
 	$('.user-settings-modal-account').livequery(function(){
 		if ($("#userinfopanel").length <= 0) {
