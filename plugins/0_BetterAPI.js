@@ -581,6 +581,23 @@ BetterAPI.prototype.loadAPI  = function() {
 			}
 		}
 	};
+	// BetterAPI.addLink("divID", "text", "href");
+	BetterAPI.addLink = function(divID, text, href) {
+        var divID = divID.startsWith("#") ? divID.substring(1) : divID;
+        if ($("#" + divID).length <= 0) {
+			$('ul[data-reactid=".0.1.1.0.1.3"]').append('\
+				<li id="'+divID+'">\
+					<a >'+text+'</a>\
+				</li>\
+			');
+		}
+		$('#status').click(function(){
+			  $.jAlert({
+				  'iframe': href,
+				  'size': 'lg'
+			 });
+		});
+	};
 	// BetterAPI.addUserButton("btn", "divID", "text");
 	BetterAPI.addUserButton = function(type, divID, text) {
         var divID = divID.startsWith("#") ? divID.substring(1) : divID;
