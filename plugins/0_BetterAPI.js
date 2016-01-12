@@ -263,6 +263,24 @@ BetterAPI.prototype.injectJS  = function() {
 	// $("head").append('<script src="https://cdn.rawgit.com/flesler/jquery.scrollTo/master/jquery.scrollTo.min.js"></script>'); // 
 };
 BetterAPI.prototype.loadAPI  = function() {
+	// BetterAPI.getCurrentChannelName();
+	BetterAPI.getCurrentChannelName = function() {
+		return $(".active .channel-name").text()
+	}
+	// BetterAPI.getCurrentChannelID();
+	BetterAPI.getCurrentChannelID = function() {
+		var _url = window.location.pathname;
+		return _url.match(/\d+$/);
+	}
+	// BetterAPI.getCurrentServerName();
+	BetterAPI.getCurrentServerName = function() {
+		return $(document).find("[data-reactid='.0.1.1.0.1.0.0.0.0']").text();
+	}
+	// BetterAPI.getCurrentServerID();
+	BetterAPI.getCurrentServerID = function() {
+		var _url = window.location.pathname;
+		return _url.match(/\d+/);
+	}
 	// BetterAPI.getOwnID();
 	BetterAPI.getOwnID = function() {
 		var ownID = ''+$(".account .avatar-small").css("background-image").match(/\d+/);
@@ -286,6 +304,26 @@ BetterAPI.prototype.loadAPI  = function() {
 	BetterAPI.getOwnAvatarURL = function() {
 		var avatar = ''+$(".account .avatar-small").css("background-image");
 		return avatar.substring(4, avatar.length - 1);
+	}
+	// BetterAPI.userCount();
+	BetterAPI.userCount = function() {
+		num = 0;
+		[].slice.call($('span[data-reactid^=".0.1.1.0.2.1.1.0.0.1"][data-reactid$=".2"]')).forEach(function (i) {
+			num = num + parseInt($(i).text());
+        });
+		return num;
+	}	
+	// BetterAPI.onlineUserCount();
+	BetterAPI.onlineUserCount = function() {
+		return parseInt($('span[data-reactid$="$online.2"]').text());
+	}
+	// BetterAPI.offlineUserCount();
+	BetterAPI.offlineUserCount = function() {
+		return parseInt($('span[data-reactid$="$offline.2').text());
+	}
+	// BetterAPI.serverCount();
+	BetterAPI.serverCount = function() {
+		return $('li[data-reactid*=".0.1.1.0.0.0.3:"]').length;
 	}
 	// BetterAPI.getUserIdByName("name");
 	BetterAPI.getUserIdByName = function(name) {
@@ -428,7 +466,6 @@ BetterAPI.prototype.loadAPI  = function() {
 			if(name == _name) {
 				var url = $(this).css("background-image");
 				match = url.substring(4, url.length - 1);
-				return false;
 			}        
 		});
 		if(!match) {
@@ -437,7 +474,6 @@ BetterAPI.prototype.loadAPI  = function() {
 				if(name == _name) {
 					var url = $(this).css("background-image");
 					match = url.substring(4, url.length - 1);
-					return false;
 				}        
 			});
 		}
@@ -463,24 +499,6 @@ BetterAPI.prototype.loadAPI  = function() {
 			});
 		}
 		return match;
-	}
-	// BetterAPI.getCurrentChannelName();
-	BetterAPI.getCurrentChannelName = function() {
-		return $(".active .channel-name").text()
-	}
-	// BetterAPI.getCurrentChannelID();
-	BetterAPI.getCurrentChannelID = function() {
-		var _url = window.location.pathname;
-		return _url.match(/\d+$/);
-	}
-	// BetterAPI.getCurrentServerName();
-	BetterAPI.getCurrentServerName = function() {
-		return $(document).find("[data-reactid='.0.1.1.0.1.0.0.0.0']").text();
-	}
-	// BetterAPI.getCurrentServerID();
-	BetterAPI.getCurrentServerID = function() {
-		var _url = window.location.pathname;
-		return _url.match(/\d+/);
 	}
 	// BetterAPI.getClientList();
 	BetterAPI.getClientList = function() {

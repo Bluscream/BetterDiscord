@@ -75,24 +75,37 @@ userInfo.prototype.start = function() {
 			var _label = '';
 			if (BetterAPI.isUID(id)) {
 				// var _label = _label + '<b>Unique ID: </b><span style="color:darkgrey">'+id+'</span>';
-				var _label = _label + '\
+				var _label = _label + '<div class="control-group" data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.1" id="userinfopanel">\
 					<label data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.0" for="settings-username">\
 						<span data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.0.0">Unique ID</span>\
 					</label>\
-					<input data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.1" id="settings-username" type="text" value="'+id+'" disabled>'
+					<input data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.1" id="settings-username" type="text" value="'+id+'" disabled></div>'
 			}
 			if (avatarID) {
 				// var _label = _label + '<br><br><b>Avatar ID: </b><span>'+avatarID+'</span>';
-				var _label = _label + '\
+				var _label = _label + '<div class="control-group" data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.1" id="userinfopanel">\
 					<label data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.0" for="settings-username">\
 						<span data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.0.0">Avatar ID</span>\
 					</label>\
-					<input data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.1" id="settings-username" type="text" value="'+avatarID+'" disabled>'
+					<input data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.0.1" id="settings-username" type="text" value="'+avatarID+'" disabled></div>'
 			}
-			$('div[data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0"]').append('\
-			<div class="control-group" id="userinfopanel" data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0.1">'+_label);
+			$('div[data-reactid=".0.5.$=1$UserSettingsModal.0.0.1.0.$ACCOUNT.0.1.0"]').append(_label);
 		}
 	});
+	appendMembers = function() {
+		if ($("#totalmembers").length <= 0) {
+			$('.scroller.channel-members').prepend('\
+			<h2 id="totalmembers">\
+				<span>Total</span>\
+				<span>—</span>\
+				<span>'+BetterAPI.userCount()+'</span>\
+			</h2>');
+		};
+	};
+	// appendMembers();
+};
+userInfo.prototype.onSwitch = function() {
+	// appendMembers();
 };
 userInfo.prototype.stop = function() {
 	$('span[data-reactid=".0.4"').off('DOMNodeInserted.userInfo');
