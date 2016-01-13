@@ -19,6 +19,18 @@ BetterAPI.prototype.start = function() {
 	BetterAPI.enableTextSelection();
 	BetterAPI.enableAutoComplete();
 	// BetterAPI.enableButtons();
+	$('ul[data-reactid=".0.1.1.0.1.3"]').livequery(function(){
+		BetterAPI.addLink("plus", "+", "https://discordapp.com/channels/@me", "full");
+	});
+	$('#plus').click(function(){
+		$.jAlert({
+			'iframe': $('#status').attr('href'),
+			'size': 'full',
+			'theme': 'black',
+			'closeBtnAlt': true,
+			'closeOnClick': true
+		 });
+	});
 };
 BetterAPI.prototype.stop = function() {
 	// BetterAPI.prototype.unloadEvents();
@@ -581,24 +593,16 @@ BetterAPI.prototype.loadAPI  = function() {
 			}
 		}
 	};
-	// BetterAPI.addLink("divID", "text", "href");
-	BetterAPI.addLink = function(divID, text, href) {
+	// BetterAPI.addLink("divID", "text", "href", "size");
+	BetterAPI.addLink = function(divID, text, href, size) {
         var divID = divID.startsWith("#") ? divID.substring(1) : divID;
         if ($("#" + divID).length <= 0) {
 			$('ul[data-reactid=".0.1.1.0.1.3"]').append('\
-				<li id="'+divID+'">\
+				<li id="'+divID+'" href="'+href+'" size="'+size+'">\
 					<a >'+text+'</a>\
 				</li>\
 			');
 		}
-		$('#status').click(function(){
-			  $.jAlert({
-				  'iframe': href,
-				  'size': 'lg',
-				  'closeBtnAlt': true,
-				  'closeOnClick': true
-			 });
-		});
 	};
 	// BetterAPI.addUserButton("btn", "divID", "text");
 	BetterAPI.addUserButton = function(type, divID, text) {

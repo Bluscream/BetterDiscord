@@ -3,8 +3,8 @@ function LastPlugin() {}
 LastPlugin.prototype.load = function() {
 };
 LastPlugin.prototype.start = function() {
-	// console.clear(); 
-	// BetterAPI.DisableLogging();
+	console.clear(); 
+	BetterAPI.DisableLogging();
 };
 LastPlugin.prototype.stop = function() {
 };

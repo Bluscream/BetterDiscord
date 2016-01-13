@@ -70,18 +70,46 @@ userInfo.prototype.start = function() {
 	});
 	$("#serverinfobutton").livequery(function(){
 		$("#serverinfobutton").click(function(){
-			console.warn('clicked');
-			Core.prototype.alert('Server Information', '\
-				<b>Name: </b>'+BetterAPI.getCurrentServerName()+'<br>\
-				<b>Server ID: </b>'+BetterAPI.getCurrentServerID()+'<br><br>\
-				<b>Channel: </b>'+BetterAPI.getCurrentChannelName()+'<br>\
-				<b>Channel ID: </b>'+BetterAPI.getCurrentChannelID()+'<br><br>\
-				<b>Users: </b>Total: <b>'+BetterAPI.userCount()+'</b> Online: <b>'+BetterAPI.onlineUserCount()+'</b> Offline: <b>'+BetterAPI.offlineUserCount()+'</b>\
+			if (!$('.bd-alert').length <= 0) {
+				$('.bd-alert').remove();
+			}
+			var sname = BetterAPI.getCurrentServerName();
+			var sid = BetterAPI.getCurrentServerID();
+			Core.prototype.alert('Server Information - '+sname, '\
+				<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="3">\
+					<TR>\
+						<TD><img border="5" src="'+BetterAPI.getUserAvatarURL(''+sid)+'"></img></TD>\
+						<TD>\
+							<b> Name: </b>'+sname+'<br>\
+							<b> Server ID: </b>'+sid+'<br><br>\
+							<b> Channel: </b>'+BetterAPI.getCurrentChannelName()+'<br>\
+							<b> Channel ID: </b>'+BetterAPI.getCurrentChannelID()+'<br><br>\
+							<b> Users: </b>Total: <b>'+BetterAPI.userCount()+'</b> Online: <font color="green">'+BetterAPI.onlineUserCount()+'</font> Offline: <font color="red">'+BetterAPI.offlineUserCount()+'</font><br>\
+						</TD>\
+					</TR>\
+				</TABLE>\
 			');
 		});
 	});
 	$('ul[data-reactid=".0.1.1.0.1.3"]').livequery(function(){
-		BetterAPI.addLink("status", "Status", "https://status.discordapp.com/");
+			BetterAPI.addLink("status", "Status", "status", "lg");
+	});
+	$('#status').click(function(){
+		if(BetterAPI.getCurrentServerID() == "129022124844253184"){
+			$.jAlert({
+				'iframe': 'https://steamstat.us',
+				'size': $('#status').attr('size'),
+				'closeBtnAlt': true,
+				'closeOnClick': true
+			 });
+		} else {
+			$.jAlert({
+				'iframe': 'https://status.discordapp.com',
+				'size': $('#status').attr('size'),
+				'closeBtnAlt': true,
+				'closeOnClick': true
+			 });
+		};
 	});
 	$('.user-settings-modal-account').livequery(function(){
 		if ($("#userinfopanel").length <= 0) {
