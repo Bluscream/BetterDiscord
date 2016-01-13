@@ -19,18 +19,18 @@ BetterAPI.prototype.start = function() {
 	BetterAPI.enableTextSelection();
 	BetterAPI.enableAutoComplete();
 	// BetterAPI.enableButtons();
-	$('ul[data-reactid=".0.1.1.0.1.3"]').livequery(function(){
-		BetterAPI.addLink("plus", "+", "https://discordapp.com/channels/@me", "full");
-	});
-	$('#plus').click(function(){
-		$.jAlert({
-			'iframe': $('#status').attr('href'),
-			'size': 'full',
-			'theme': 'black',
-			'closeBtnAlt': true,
-			'closeOnClick': true
-		 });
-	});
+	// $('ul[data-reactid=".0.1.1.0.1.3"]').livequery(function(){
+		// BetterAPI.addLink("plus", "+", "https://discordapp.com/channels/@me", "full");
+	// });
+	// $('#plus').click(function(){
+		// $.jAlert({
+			// 'iframe': $('#status').attr('href'),
+			// 'size': 'full',
+			// 'theme': 'black',
+			// 'closeBtnAlt': true,
+			// 'closeOnClick': true
+		 // });
+	// });
 };
 BetterAPI.prototype.stop = function() {
 	// BetterAPI.prototype.unloadEvents();
@@ -776,6 +776,34 @@ BetterAPI.prototype.loadAPI  = function() {
 			}
 		})
 	};
+	b64toBlob = function(b64Data) {
+		var pieces = b64Data.split(',');
+		var contentType = pieces[0].substr(5).split(';')[0];
+		var data = pieces[1];    
+		var byteCharacters = atob(data);
+		var byteNumbers = new Array(byteCharacters.length);
+		for (var i = 0; i < byteCharacters.length; i++) {
+			byteNumbers[i] = byteCharacters.charCodeAt(i);
+		}
+		var byteArray = new Uint8Array(byteNumbers);
+		var blob = new Blob([byteArray], {type: contentType});
+		return blob;
+	}
+	BetterAPI.sendImage = function(imgName, imgData, cID) {
+		var imageBlob = b64toBlob(imgData);
+		var fd = new FormData();
+		fd.append('file', imageBlob, imgName);
+		$.ajax({
+		  type: "POST",
+		  url: "https://discordapp.com/api/channels/" + cID + "/messages",
+		  headers: {
+			  "authorization": localStorage.token.slice(1, -1),
+		  },
+		  data: fd,
+		  processData: false,
+		  contentType: false
+		});
+	}
 };
 BetterAPI.prototype.loadEvents  = function() {
 	$('span[data-reactid=".0.4"]').on('DOMNodeInserted', '.popout', function() {
