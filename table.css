@@ -76,3 +76,12 @@ table th.tg-sort-desc:after {
         margin: auto 0px;
     }
 }
+.logrow>td.info{
+    background-color: #8BDDE8 !important;
+}
+.logrow>td.warn{
+    background-color: #D6E88B !important;
+}
+.logrow>td.error{
+    background-color: #E88B8B !important;
+}
