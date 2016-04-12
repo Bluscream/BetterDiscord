@@ -1,12 +1,16 @@
+td.debug{
+    background-color:lightgreen !important;
+}
 td.info{
-    background-color: #8BDDE8 !important;
+    background-color:#8BDDE8 !important;
 }
 td.warn{
-    background-color: #D6E88B !important;
+    background-color:#D6E88B !important;
 }
 td.error{
-    background-color: #E88B8B !important;
+    background-color:#E88B8B !important;
 }
+
 .tg {
     border-collapse: collapse;
     border-spacing: 0;
